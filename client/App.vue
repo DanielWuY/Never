@@ -8,9 +8,9 @@
 </template>
 
 <script>
-	import MainHeader from "./components/MainHeader.vue";
-	import TodoList from "./components/TodoList.vue";
-	import MainFooter from "./components/MainFooter.vue";
+	import MainHeader from "./layout/MainHeader.vue";
+	import TodoList from "./views/todo/TodoList.vue";
+	import MainFooter from "./layout/MainFooter.vue";
 
 	export default {
 		components: {
