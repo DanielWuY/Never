@@ -1,0 +1,43 @@
+<template>
+	<div id="app">
+    	<div id="cover"></div>
+		<MainHeader></MainHeader>
+		<TodoList></TodoList>
+		<MainFooter></MainFooter>
+	</div>
+</template>
+
+<script>
+	import MainHeader from "./components/MainHeader.vue";
+	import TodoList from "./components/TodoList.vue";
+	import MainFooter from "./components/MainFooter.vue";
+
+	export default {
+		components: {
+			MainHeader,
+			TodoList,
+			MainFooter
+		}
+	};
+</script>
+
+<style lang="stylus" scoped>
+	#app {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+	}
+
+	#cover {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background-color: #eee;
+		opacity: 0.5;
+		z-index: -1;
+	}
+</style>
