@@ -2,20 +2,20 @@
 	<div id="app">
     	<div id="cover"></div>
 		<MainHeader></MainHeader>
-		<TodoList></TodoList>
+		<transition name="fade">
+			<router-view/>
+		</transition>
 		<MainFooter></MainFooter>
 	</div>
 </template>
 
 <script>
 	import MainHeader from "./layout/MainHeader.vue";
-	import TodoList from "./views/todo/TodoList.vue";
 	import MainFooter from "./layout/MainFooter.vue";
 
 	export default {
 		components: {
 			MainHeader,
-			TodoList,
 			MainFooter
 		}
 	};
