@@ -10,8 +10,8 @@ import './assets/styles/global.styl';
 Vue.use(VueRouter);
 Vue.use(Vuex);
 
-const router = createRouter()
-const store = createStore()
+const router = createRouter();
+const store = createStore();
 
 new Vue({
     router,

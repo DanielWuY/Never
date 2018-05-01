@@ -14,6 +14,9 @@
 	import MainFooter from "./layout/MainFooter.vue";
 
 	export default {
+		metaInfo: {
+			title: 'Never'
+		},
 		components: {
 			MainHeader,
 			MainFooter

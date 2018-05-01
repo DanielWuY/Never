@@ -1,6 +1,6 @@
 <template>
   <header class="main-header">
-      <h1>Never Todo</h1>
+      <h1>Never</h1>
   </header>
 </template>
 
