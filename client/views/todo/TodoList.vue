@@ -21,7 +21,6 @@
 		<TodoHelper 
 			:filter="filter" 
 			:todos="todos"
-			@toggle="toggleFilter"
 			@clearCompleted="clearCompleted"
 		/>
   </section>
