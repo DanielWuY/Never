@@ -1,16 +1,6 @@
 <template>
     <div class="helper">
         <span class="left">{{unfinishedString}}</span>
-        <span class="tabs">
-            <span 
-                v-for="state in states"
-                :key="state"
-                :class="[state, filter === state? 'actived' : '']"
-                @click="toggleFilter(state)"
-            >
-                {{state}}
-            </span>
-        </span>
         <span class="clear" @click="clearCompleted">Clear Completed</span>
     </div>
 </template>
@@ -33,15 +23,7 @@
                 return unfinishedCount + ((unfinishedCount > 1) ? ' items' : ' item') + ' left';
             }
         },
-        data() {
-            return {
-                states: ['All', 'Active', 'Completed']
-            }
-        },
         methods: {
-            toggleFilter(state) {
-                this.$emit('toggle', state)
-            },
             clearCompleted() {
                 this.$emit('clearCompleted')
             }

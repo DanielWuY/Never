@@ -1,10 +1,8 @@
 <template>
   <section class="real-app">
 	  	<div class="tab-container">
-			<tabs :value="tabValue" @change="handleChangeTab">
-				<tab label="tab1" index="1"></tab>
-				<tab index="2"><span slot="label" style="color: red;">tab2</span></tab>
-				<tab label="tab3" index="3"></tab>
+			<tabs :value="filter" @change="handleChangeTab">
+				<tab :label="state" :index="state" v-for="state in states" :key="state"></tab>
 			</tabs>
 		</div>
         <input 
@@ -43,7 +41,7 @@
 			return {
 				todos: [],
 				filter: "All",
-				tabValue: "1"
+				states: ['All', 'Active', 'Completed']
 			}
 		},
 		computed: {
@@ -67,14 +65,11 @@
 			deleteTodo(id) {
 				this.todos.splice(this.todos.findIndex(todo => todo.id === id), 1);
 			},
-			toggleFilter(state) {
-				this.filter = state;
-			},
 			clearCompleted() {
 				this.todos = this.todos.filter(todo => !todo.completed);
 			},
 			handleChangeTab(value) {
-				this.tabValue = value;
+				this.filter = value;
 			}
 		}
 	};

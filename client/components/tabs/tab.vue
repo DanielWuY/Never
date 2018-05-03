@@ -32,6 +32,9 @@
             handleClick() {
                 this.$parent.onChange(this.index);
             }
+        },
+        mounted() {
+            this.$parent.panels.push(this);
         }
     }
 </script>
