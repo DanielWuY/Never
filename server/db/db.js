@@ -50,7 +50,7 @@ module.exports = (appId, appKey) => {
                 headers: getHeaders()
             }));
         },
-        async deleteCompleted(ids) {
+        async deleteAllCompleted(ids) {
             const requests = ids.map(id => {
                 return {
                     method: 'DELETE',

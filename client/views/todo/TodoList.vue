@@ -10,27 +10,28 @@
             class="new-todo" 
             autofocus="autofocus" 
             placeholder="What needs to be done?"
-            @keyup.enter="newTodo"
+            @keyup.enter="handleAdd"
         >
 		<TodoItem
 			:todo="todo"
 			v-for="todo in filterTodos"
 			:key="todo.id"
 			@del="deleteTodo"
+			@toggle="toggleTodoState"
 		/>
 		<TodoHelper 
 			:filter="filter" 
 			:todos="todos"
-			@clearCompleted="clearCompleted"
+			@clearCompleted="deleteAllCompleted"
 		/>
   </section>
 </template>
 
 <script>
+	import { mapState, mapActions } from 'vuex';
 	import TodoItem from "./TodoItem.vue";
 	import TodoHelper from "./TodoHelper.vue";
 
-	let id = 0;
 	export default {
 		components: {
 			TodoItem,
@@ -38,12 +39,12 @@
 		},
 		data() {
 			return {
-				todos: [],
 				filter: "All",
 				states: ['All', 'Active', 'Completed']
 			}
 		},
 		computed: {
+			...mapState(['todos']),
 			filterTodos() {
 				if (this.filter === 'All') {
 					return this.todos;
@@ -53,23 +54,39 @@
 			}
 		},
 		methods: {
-			newTodo(e) {
-				this.todos.unshift({
-					id: id++,
-					content: e.target.value.trim(),
-					completed: false
-				});
+			...mapActions(['fetchTodos', 'addTodo', 'deleteTodo', 'updateTodo', 'deleteAllCompleted']),
+			handleAdd(e) {
+				const content = e.target.value.trim();
+				if (!content) {
+					this.$notify({ content: 'no todo content!' });
+					return;
+				}
+				const todo = { content, completed: false };
+				this.addTodo(todo);
 				e.target.value = '';
-			},
-			deleteTodo(id) {
-				this.todos.splice(this.todos.findIndex(todo => todo.id === id), 1);
-			},
-			clearCompleted() {
-				this.todos = this.todos.filter(todo => !todo.completed);
 			},
 			handleChangeTab(value) {
 				this.filter = value;
+			},
+			toggleTodoState(todo) {
+				this.updateTodo({
+					id: todo.id,
+					todo: Object.assign({}, todo, {
+						completed: !todo.completed
+					})
+				})
 			}
+		},
+		mounted() {
+			if (this.todos && this.todos.length < 1) {
+				this.fetchTodos();
+			}
+		},
+		asyncData({ store, router }) {
+			if (store.state.user) {
+				return store.dispatch('fetchTodos');
+			}
+			return Promise.resolve();
 		}
 	};
 </script>
