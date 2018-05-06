@@ -95,7 +95,8 @@ if (isDev) {
         plugins: defaultPlugins.concat([
             new MiniCssExtractPlugin({
                 filename: 'styles.[contentHash:8].css'
-            })
+            }),
+            new webpack.NamedChunksPlugin()
         ]),
         optimization: {
             splitChunks: {

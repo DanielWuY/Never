@@ -9,14 +9,14 @@ export default [
     {
         path: '/app',
         components: {
-            default: () => import('../views/todo/TodoList.vue')
+            default: () => import(/* webpackChunkName: "todo-view" */ '../views/todo/TodoList.vue')
         },
         name: 'app'
     },
     {
         path: '/login',
         components: {
-            default: () => import('../views/login/Login.vue')
+            default: () => import(/* webpackChunkName: "login-view" */ '../views/login/Login.vue')
         },
         name: 'login'
     }
